@@ -1,10 +1,6 @@
-const express = require('express');
-const log = require('debug')("subheaven-base:auth")
-const path = require('path');
-const router = express.Router();
+const log = require('debug')('subheaven-auth:controller.auth');
 
-/* GET home page. */
-router.post('/login', function(req, res, next) {
+exports.validate = async(req, res, next) => {
     let { user, pass } = req.body;
     log(`Login requested:`);
     log(`    ${user}`);
@@ -13,6 +9,4 @@ router.post('/login', function(req, res, next) {
     } else {
         res.status(403).send('You should not pass');
     }
-});
-
-module.exports = router;
+}
