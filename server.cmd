@@ -1,2 +1,2 @@
 cls
-SET DEBUG=subheaven-base:* & nodemon start
+SET DEBUG=subheaven-auth:* & nodemon start

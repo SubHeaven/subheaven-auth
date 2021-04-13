@@ -3,6 +3,7 @@
 <head>
     <title>SubHeaven</title>
     <link rel="stylesheet" href="/css/tailwind.min.css">
+    <script src="/js/axios.min.js"></script>
     <script src="/js/login.js"></script>
 </head>
 
@@ -10,20 +11,20 @@
     <main>
         <div>
             <div class="w-screen h-screen flex justify-center items-center">
-                <form class="flex flex-col pl-8" action="/account/validate" method="post">
-                    <!-- <img class="h-16 w-16 md:h-24 md:w-24 rounded-full mx-auto mb-8" src="/images/user.jpg" /> -->
+                <form class="flex flex-col pl-8" action="#" method="#" target="_blank">
+                    <img class="h-16 w-16 md:h-24 md:w-24 rounded-full mx-auto mb-8" src="/images/user.jpg" />
 
-                    <!-- <label class="border-2 border-gray-700 w-64 h-16 text-center text-xs text-gray-600 pt-2">
+                    <label class="border-2 border-gray-700 w-64 h-16 text-center text-xs text-gray-600 pt-2">
                         Usuário
                     </label>
-                    <input type="text" name="user" placeholder="Usuário" class="border-2 border-pink-600 -mt-8 -ml-8 mb-8 w-64 h-16 text-center text-sm text-gray-800 ">
+                    <input type="text" id='subheaven-login-user' name="user" placeholder="Usuário" class="border-2 border-pink-600 -mt-8 -ml-8 mb-8 w-64 h-16 text-center text-sm text-gray-800 ">
 
                     <label class="border-2 border-gray-700 w-64 h-16 text-center text-xs text-gray-600 pt-2">
                         Password
                     </label>
-                    <input type="password" name="password" placeholder="password" class="border-2 border-pink-600 -mt-8 -ml-8 mb-8 w-64 h-16 text-center text-sm text-gray-800 ">
+                    <input type="password" id='subheaven-login-pass' name="password" placeholder="password" class="border-2 border-pink-600 -mt-8 -ml-8 mb-8 w-64 h-16 text-center text-sm text-gray-800 ">
 
-                    <input type="submit" value="Submit" class="self-end mr-8 h-10 w-32 my-4 border-yellow-500 border-2 text-sm text-gray-700 hover:bg-yellow-500 hover:text-white cursor-pointer"> -->
+                    <input type="button" id='subheaven-login-submit' value="Login" class="self-end mr-8 h-10 w-32 my-4 border-yellow-500 border-2 text-sm text-gray-700 hover:bg-yellow-500 hover:text-white cursor-pointer">
                 </form>
             </div>
         </div>
