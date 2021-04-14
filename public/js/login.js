@@ -17,9 +17,9 @@ login = (() => {
                 }
             }).then(response => {
                 if (response.statusText == 'OK' && response.data.result) {
-                    console.log(response.data.token);
+                    console.log(response.data.next);
+                    window.location.replace(response.data.next);
                 }
-                console.log(response);
             });
         }
 

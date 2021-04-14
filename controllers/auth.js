@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken');
 const log = require('debug')('subheaven-auth:controller.auth');
 
+exports.go_to_login = async(status, req, res) => {
+    res.status(status).redirect(`${req.headers.origin.split(':')[0]}:33327/account/login`);
+}
+
 exports.signin = async(req, res, next) => {
     let token = req.headers.authorization;
     let you_shall_not_pass = () => {
@@ -20,8 +24,6 @@ exports.signin = async(req, res, next) => {
         token = buff.toString('utf8');
         token = token.split(":");
         if (token[0] == 'SubHeaven' && token[1] == '123456') {
-            console.log('Ok dude');
-            console.log(req);
             let actoken = {
                 name: 'SubHeaven',
                 id: 1,
@@ -30,8 +32,10 @@ exports.signin = async(req, res, next) => {
             actoken = jwt.sign(actoken, process.env.SECRET, { expiresIn: '1h' });
             res.cookie('sbh_tkn', actoken, { httpOnly: true });
             if (req.cookies.sbh_next) {
-                res.status(401).redirect(req.cookies.sbh_next);
-            } else res.status(200).json({ result: true, token: actoken });
+                res.status(200).json({ result: true, next: req.cookies.sbh_next });
+            } else {
+                res.status(200).json({ result: true, next: '/' });
+            }
         } else {
             console.log('You should not pass');
             res.status(403).json({ result: false, message: 'You should not pass' });
@@ -41,17 +45,22 @@ exports.signin = async(req, res, next) => {
     }
 };
 
+exports.logout = async(req, res) => {
+    // res.cookie('sbh_tkn', null);
+    res.clearCookie("sbh_tkn");
+    this.go_to_login(200, req, res);
+};
+
 exports.validate = async(req, res, next) => {
+    console.log(req.cookies.sbh_tkn);
     let token = req.cookies.sbh_tkn;
     console.log(`${req.headers.host.split(':')[0]}:33327/account/login`);
     res.cookie('sbh_next', req.originalUrl);
 
-    let back_to_login = () => res.status(401).redirect(`http://${req.headers.host.split(':')[0]}:33327/account/login`);
-
-    if (!token) return back_to_login();
+    if (!token) return this.go_to_login(401, req, res);
 
     let data = jwt.verify(token, process.env.SECRET);
-    if (!data || req.headers['user-agent'] !== data.agent) return back_to_login();
+    if (!data || req.headers['user-agent'] !== data.agent) return this.go_to_login(401, req, res);
 
     req.user = {
         name: data.name,
