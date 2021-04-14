@@ -2,7 +2,20 @@ const jwt = require('jsonwebtoken');
 const log = require('debug')('subheaven-auth:controller.auth');
 
 exports.go_to_login = async(status, req, res) => {
-    res.status(status).redirect(`${req.headers.origin.split(':')[0]}:33327/account/login`);
+    console.log("");
+    console.log("=========================================================================");
+    console.log("=========================================================================");
+    console.trace();
+    console.log("");
+    console.log(req.headers);
+    console.log("=========================================================================");
+    console.log("=========================================================================");
+    console.log("");
+    if (req.headers.origin) res.status(status).redirect(`${req.headers.origin.split(':')[0]}:33327/account/login`);
+    else {
+        console.log(`http://${req.headers.host.split(':')[0]}:33327/account/login`);
+        res.status(status).redirect(`http://${req.headers.host.split(':')[0]}:33327/account/login`);
+    }
 }
 
 exports.signin = async(req, res, next) => {
@@ -57,14 +70,18 @@ exports.validate = async(req, res, next) => {
     console.log(`${req.headers.host.split(':')[0]}:33327/account/login`);
     res.cookie('sbh_next', req.originalUrl);
 
-    if (!token) return this.go_to_login(401, req, res);
+    if (!token) return this.go_to_login(200, req, res);
 
-    let data = jwt.verify(token, process.env.SECRET);
-    if (!data || req.headers['user-agent'] !== data.agent) return this.go_to_login(401, req, res);
+    try {
+        let data = jwt.verify(token, process.env.SECRET);
+        if (!data || req.headers['user-agent'] !== data.agent) return this.go_to_login(200, req, res);
 
-    req.user = {
-        name: data.name,
-        id: data.id,
-    };
+        req.user = {
+            name: data.name,
+            id: data.id,
+        };
+    } catch (e) {
+        return this.go_to_login(200, req, res);
+    }
     next();
 };

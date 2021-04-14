@@ -7,7 +7,8 @@ const { signin, validate, logout } = require('../controllers/auth');
 
 router.get('/login', async(req, res, next) => {
     log('Login page requested.');
-    res.sendFile(path.resolve(__dirname + '../public/login.html'));
+    console.log(path.resolve(__dirname + '/../public/login.html'));
+    res.sendFile(path.resolve(__dirname + '/../public/login.html'));
 });
 
 router.get('/secret', validate, async(req, res, next) => {
