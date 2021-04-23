@@ -3,8 +3,6 @@ login = (() => {
         this.validate = () => {
             let user = document.getElementById('subheaven-login-user').value;
             let pass = document.getElementById('subheaven-login-pass').value;
-            console.log(`user = ${user}`);
-            console.log(`pass = ${pass}`);
             axios({
                 method: 'POST',
                 url: 'http://127.0.0.1:33327/account/signin',
@@ -17,7 +15,6 @@ login = (() => {
                 }
             }).then(response => {
                 if (response.statusText == 'OK' && response.data.result) {
-                    console.log(response.data.next);
                     window.location.replace(response.data.next);
                 }
             });

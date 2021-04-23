@@ -2,18 +2,8 @@ const jwt = require('jsonwebtoken');
 const log = require('debug')('subheaven-auth:controller.auth');
 
 exports.go_to_login = async(status, req, res) => {
-    console.log("");
-    console.log("=========================================================================");
-    console.log("=========================================================================");
-    console.trace();
-    console.log("");
-    console.log(req.headers);
-    console.log("=========================================================================");
-    console.log("=========================================================================");
-    console.log("");
     if (req.headers.origin) res.status(status).redirect(`${req.headers.origin.split(':')[0]}:33327/account/login`);
     else {
-        console.log(`http://${req.headers.host.split(':')[0]}:33327/account/login`);
         res.status(status).redirect(`http://${req.headers.host.split(':')[0]}:33327/account/login`);
     }
 }
@@ -23,8 +13,6 @@ exports.signin = async(req, res, next) => {
     let you_shall_not_pass = () => {
         return res.status(401).json({ result: false, message: 'You should not pass' });
     }
-    console.log(`Login requested:`);
-    console.log(`    ${token}`);
 
     if (!token) return you_shall_not_pass();
 
@@ -50,7 +38,6 @@ exports.signin = async(req, res, next) => {
                 res.status(200).json({ result: true, next: '/' });
             }
         } else {
-            console.log('You should not pass');
             res.status(403).json({ result: false, message: 'You should not pass' });
         }
     } catch (error) {
@@ -59,15 +46,12 @@ exports.signin = async(req, res, next) => {
 };
 
 exports.logout = async(req, res) => {
-    // res.cookie('sbh_tkn', null);
     res.clearCookie("sbh_tkn");
     this.go_to_login(200, req, res);
 };
 
 exports.validate = async(req, res, next) => {
-    console.log(req.cookies.sbh_tkn);
     let token = req.cookies.sbh_tkn;
-    console.log(`${req.headers.host.split(':')[0]}:33327/account/login`);
     res.cookie('sbh_next', req.originalUrl);
 
     if (!token) return this.go_to_login(200, req, res);

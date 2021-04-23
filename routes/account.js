@@ -7,7 +7,6 @@ const { signin, validate, logout } = require('../controllers/auth');
 
 router.get('/login', async(req, res, next) => {
     log('Login page requested.');
-    console.log(path.resolve(__dirname + '/../public/login.html'));
     res.sendFile(path.resolve(__dirname + '/../public/login.html'));
 });
 
