@@ -1,0 +1,14 @@
+2021/04/23-15:04:37.172 2aac Recovering log #25
+2021/04/23-15:04:37.172 2aac Level-0 table #27: started
+2021/04/23-15:04:37.216 2aac Level-0 table #27: 237 bytes OK
+2021/04/23-15:04:37.283 2aac Delete type=0 #25
+2021/04/23-15:04:37.283 2aac Delete type=3 #23
+2021/04/23-15:04:37.285 3ae8 Compacting 4@0 + 1@1 files
+2021/04/23-15:04:37.323 3ae8 Generated table #29@0: 5 keys, 618 bytes
+2021/04/23-15:04:37.323 3ae8 Compacted 4@0 + 1@1 files => 618 bytes
+2021/04/23-15:04:37.356 3ae8 compacted to: files[ 0 1 0 0 0 0 0 ]
+2021/04/23-15:04:37.356 3ae8 Delete type=2 #16
+2021/04/23-15:04:37.357 3ae8 Delete type=2 #18
+2021/04/23-15:04:37.357 3ae8 Delete type=2 #21
+2021/04/23-15:04:37.357 3ae8 Delete type=2 #24
+2021/04/23-15:04:37.357 3ae8 Delete type=2 #27

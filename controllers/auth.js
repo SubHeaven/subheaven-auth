@@ -24,7 +24,9 @@ exports.signin = async(req, res, next) => {
         let buff = Buffer.from(token, 'base64');
         token = buff.toString('utf8');
         token = token.split(":");
-        if (token[0] == 'SubHeaven' && token[1] == '123456') {
+        console.log(token[0]);
+        console.log(token[1]);
+        if (token[0] == 'SubHeaven' && token[1] == 'MinhaSenha') {
             let actoken = {
                 name: 'SubHeaven',
                 id: 1,

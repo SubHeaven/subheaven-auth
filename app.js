@@ -8,6 +8,9 @@ const account = require('./routes/account');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
+const db = require('./controllers/database');
+db.teste();
+
 const app = express();
 
 app.use(helmet());
