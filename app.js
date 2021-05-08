@@ -8,8 +8,7 @@ const account = require('./routes/account');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
-const db = require('./controllers/database');
-db.teste();
+require('dotenv-safe').config();
 
 const app = express();
 

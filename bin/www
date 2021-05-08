@@ -7,7 +7,6 @@
 var app = require('../app');
 var debug = require('debug')('subheaven-auth:server');
 var http = require('http');
-require('dotenv-safe').config();
 
 /**
  * Get port from environment and store in Express.

@@ -1,0 +1,17 @@
+{
+    id: {
+        type: 'integer',
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    user: {
+        type: 'string',
+        allowNull: false
+    },
+    pass: {
+        type: 'string',
+        allowNull: false
+    },
+    last_login: 'datetime'
+}
